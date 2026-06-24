@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fazekas Boglárka Online Galéria & Webshop</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -222,6 +223,50 @@ footer{
 
 }
 
+
+.logo,h1,h2,h3{
+font-family:'Cinzel',serif;
+}
+
+.card{
+border:2px solid #d4af37 !important;
+box-shadow:0 0 10px rgba(212,175,55,.25);
+}
+
+.section-title::after{
+content:'';
+display:block;
+width:120px;
+height:2px;
+background:#d4af37;
+margin:15px auto;
+}
+
+.cart-info{
+background:#211912;
+padding:10px 15px;
+border:1px solid #d4af37;
+border-radius:10px;
+}
+
+.menu{
+display:flex;
+justify-content:center;
+gap:20px;
+margin-top:15px;
+flex-wrap:wrap;
+}
+
+.menu a{
+color:#d4af37;
+text-decoration:none;
+font-weight:bold;
+}
+
+.menu a:hover{
+text-decoration:underline;
+}
+
 </style>
 </head>
 
@@ -232,6 +277,7 @@ footer{
 <div class="header-container">
 
 <div class="logo">
+
 Fazekas Boglárka Galéria
 </div>
 
@@ -246,6 +292,13 @@ Ft
 
 </div>
 
+
+<nav class="menu">
+<a href="#festmenyek">Festmények</a>
+<a href="#egyedi-rendeles">Egyedi Rendelés</a>
+<a href="#rolam">Rólam</a>
+<a href="#kapcsolat">Kapcsolat</a>
+</nav>
 </header>
 
 <section class="hero">
@@ -265,10 +318,10 @@ otthonok és gyűjtők számára.
 
 </section>
 
-<section>
+<section id="festmenyek">
 
 <h2 class="section-title">
-Kiemelt Festmények
+Festmények
 </h2>
 
 <div class="grid">
@@ -279,7 +332,7 @@ Kiemelt Festmények
 
 <div class="card-content">
 
-<h3>A Hajnal Hercegnője</h3>
+<h3>Minta 1</h3>
 
 <div class="meta">
 Olaj vásznon • 60x80 cm
@@ -307,7 +360,7 @@ Kosárba
 
 <div class="card-content">
 
-<h3>A Király Udvara</h3>
+<h3>Minta 2</h3>
 
 <div class="meta">
 Olaj vásznon • 70x90 cm
@@ -335,7 +388,7 @@ Kosárba
 
 <div class="card-content">
 
-<h3>Az Aranykor</h3>
+<h3>Minta 3</h3>
 
 <div class="meta">
 Akril • 50x70 cm
@@ -347,7 +400,7 @@ Akril • 50x70 cm
 
 <button
 onclick="addToCart(
-'Az Aranykor',
+'Minta 3',
 75000
 )">
 Kosárba
@@ -360,6 +413,30 @@ Kosárba
 </div>
 
 </section>
+
+<section id="egyedi-rendeles">
+
+<h2 class="section-title">
+Egyedi Rendelés
+</h2>
+
+<div class="order-form">
+
+<p>
+Szeretnél saját elképzelés alapján készített festményt?
+Írd meg az elképzelésedet és készítek egyedi ajánlatot.
+</p>
+
+<br>
+
+<p>📧 laszlo202011@gmail.com</p>
+<p>📞 Telefonszám: később megadva</p>
+<p>📱 Facebook / Instagram: később megadva</p>
+
+</div>
+
+</section>
+
 <section>
 
 <h2 class="section-title">
@@ -510,7 +587,7 @@ style="margin-top:20px;">
 
 </section>
 
-<section>
+<section id="rolam">
 
 <h2 class="section-title">
 Rólam
@@ -526,6 +603,7 @@ Minden festmény egyedi, kézzel készített alkotás.
 
 </section>
 
+<section id="kapcsolat"></section>
 <footer>
 
 <div class="footer-grid">
