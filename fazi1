@@ -1,0 +1,323 @@
+@ -0,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fazekas Boglárka Online Galéria & Webshop</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#15110d;
+    color:#f5e6c8;
+    font-family:Georgia,serif;
+}
+
+header{
+    text-align:center;
+    padding:40px 20px;
+    border-bottom:2px solid #b8860b;
+}
+
+header h1{
+    color:#d4af37;
+    font-size:3rem;
+}
+
+.cart-counter{
+    margin-top:15px;
+    font-size:1.2rem;
+}
+
+.gallery{
+    max-width:1200px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:#211912;
+    border:1px solid #b8860b;
+    overflow:hidden;
+}
+
+.card img{
+    width:100%;
+    height:350px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card h3{
+    color:#d4af37;
+    margin-bottom:10px;
+}
+
+.price{
+    font-size:1.2rem;
+    margin:15px 0;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#b8860b;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#d4af37;
+}
+
+.cart{
+    max-width:900px;
+    margin:40px auto;
+    padding:20px;
+    border:1px solid #b8860b;
+}
+
+.cart ul{
+    margin-top:15px;
+    margin-left:20px;
+}
+
+.order-form{
+    max-width:900px;
+    margin:40px auto;
+    padding:20px;
+}
+
+input, textarea{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+}
+
+.summary{
+    margin-top:20px;
+    padding:15px;
+    background:#211912;
+    border:1px solid #b8860b;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    border-top:1px solid #b8860b;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Fazekas Boglárka Online Galéria & Webshop</h1>
+
+    <div class="cart-counter">
+        🛒 Kosár: <span id="cartCount">0</span>
+    </div>
+</header>
+
+<section class="gallery">
+
+<div class="grid">
+
+<div class="card">
+<img src="https://picsum.photos/600/800?1">
+<div class="card-content">
+<h3>A Hajnal Hercegnője</h3>
+<p>Olajfestmény vásznon</p>
+<div class="price">95 000 Ft</div>
+<button onclick="addToCart('A Hajnal Hercegnője',95000)">
+Kosárba
+</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/600/800?2">
+<div class="card-content">
+<h3>A Király Udvara</h3>
+<p>Olajfestmény vásznon</p>
+<div class="price">120 000 Ft</div>
+<button onclick="addToCart('A Király Udvara',120000)">
+Kosárba
+</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://picsum.photos/600/800?3">
+<div class="card-content">
+<h3>Az Aranykor</h3>
+<p>Akril vásznon</p>
+<div class="price">75 000 Ft</div>
+<button onclick="addToCart('Az Aranykor',75000)">
+Kosárba
+</button>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section class="cart">
+
+<h2>Kosár tartalma</h2>
+
+<ul id="cartItems"></ul>
+
+<h3>
+Összesen:
+<span id="total">0</span> Ft
+</h3>
+
+</section>
+
+<section class="order-form">
+
+<h2>Megrendelés</h2>
+
+<input type="text" id="name" placeholder="Név">
+<input type="email" id="email" placeholder="E-mail">
+<input type="text" id="phone" placeholder="Telefonszám">
+
+<textarea id="address"
+placeholder="Szállítási cím"></textarea>
+
+<button onclick="order()">
+Megrendelés utalással
+</button>
+
+<div id="result"></div>
+
+</section>
+
+<footer>
+© 2026 Fazekas Boglárka Online Galéria & Webshop
+</footer>
+
+<script>
+
+let cart=[];
+let total=0;
+
+function addToCart(name,price){
+
+    cart.push({
+        name:name,
+        price:price
+    });
+
+    total+=price;
+
+    renderCart();
+}
+
+function renderCart(){
+
+    const list=
+    document.getElementById("cartItems");
+
+    list.innerHTML="";
+
+    cart.forEach(item=>{
+
+        const li=
+        document.createElement("li");
+
+        li.innerText=
+        item.name+" - "+
+        item.price.toLocaleString()+
+        " Ft";
+
+        list.appendChild(li);
+    });
+
+    document.getElementById("total")
+    .innerText=
+    total.toLocaleString();
+
+    document.getElementById("cartCount")
+    .innerText=
+    cart.length;
+}
+
+function order(){
+
+    if(cart.length===0){
+        alert("A kosár üres!");
+        return;
+    }
+
+    let name=
+    document.getElementById("name").value;
+
+    if(name===""){
+        alert("Add meg a neved!");
+        return;
+    }
+
+    document.getElementById("result")
+    .innerHTML=
+
+    `<div class="summary">
+
+    <h3>Köszönjük a rendelést!</h3>
+
+    <br>
+
+    <p><b>Vásárló:</b> ${name}</p>
+
+    <p><b>Fizetendő:</b>
+    ${total.toLocaleString()} Ft</p>
+
+    <br>
+
+    <p>
+    Fizetési mód:
+    Banki átutalás
+    </p>
+
+    <br>
+
+    <p>
+    Kedvezményezett:
+    Fazekas Boglárka
+    </p>
+
+    <p>
+    Bankszámlaszám:
+    12345678-12345678-12345678
+    </p>
+
+    <p>
+    Közlemény:
+    Festmény rendelés
+    </p>
+
+    </div>`;
+}
+
+</script>
+
+</body>
+</html>
